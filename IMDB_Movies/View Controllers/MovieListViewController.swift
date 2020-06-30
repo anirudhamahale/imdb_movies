@@ -134,7 +134,7 @@ class MovieListViewController: ViewController {
     tableView.sectionFooterHeight = .zero
     
     let searchBar = movieFilterSearchController.searchBar
-    searchBar.placeholder = "Search Offers"
+    searchBar.placeholder = "Filter Movies"
     searchBar.barTintColor = Colors.primary
     searchBar.tintColor = UIColor.white
     

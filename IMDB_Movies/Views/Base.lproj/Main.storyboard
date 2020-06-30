@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Movies-->
+        <!--Movie Catalog-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="MovieListViewController" id="BYZ-38-t0r" customClass="MovieListViewController" customModule="IMDB_Movies" customModuleProvider="target" sceneMemberID="viewController">
@@ -40,7 +40,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Movies" id="svs-nt-WH6"/>
+                    <navigationItem key="navigationItem" title="Movie Catalog" id="svs-nt-WH6"/>
                     <connections>
                         <outlet property="tableView" destination="LOs-1s-HKL" id="ztb-ii-MQj"/>
                     </connections>
