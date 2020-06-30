@@ -15,7 +15,7 @@ struct CFont {
       return UIFont(name: "OpenSans-Bold", size: size)!
     }
     static func regular(size: CGFloat) -> UIFont {
-      return UIFont(name: "OpenSans-regular", size: size)!
+      return UIFont(name: "OpenSans-Regular", size: size)!
     }
   }
 }

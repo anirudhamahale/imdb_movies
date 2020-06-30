@@ -7,9 +7,15 @@
 //
 
 import Foundation
+import RxSwift
 
 class MovieRemoteDataProvider: RemoteDataProvider {
-  func getMovies(count: Int) {
-    
+  func getMovies(page: Int) -> Observable<[MovieModel]> {
+    let url = APPURL.popularMoviesList
+    let params: [String : Any] = ["page": page, "api_key": StringConstant.api_key]
+    return get(url, parameters: params)
+      .map { (response) -> [MovieModel] in
+        return MovieJSONMapper.getMoviesListFrom(from: response.1)
+    }
   }
 }

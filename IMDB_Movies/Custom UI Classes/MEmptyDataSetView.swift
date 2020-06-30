@@ -140,6 +140,7 @@ class MEmptyDataSetView: UIView, MEmptyDataSetViewDelegate {
   
   private func addImageView(image: UIImage, shouldAnimate: Bool = false) -> NSLayoutYAxisAnchor {
     imageView = UIImageView()
+    imageView.tintColor = Colors.primary
     imageView.translatesAutoresizingMaskIntoConstraints = false
     imageView.image = image
     parentView.addSubview(imageView)
