@@ -63,7 +63,8 @@ class MovieListViewController: ViewController {
         }
     }.disposed(by: disposeBag)
     
-    tableView.rx.contentOffset
+    tableView.rx
+      .contentOffset
       .filter({ [weak self] (_) -> Bool in
         return self?.viewModel.moreRemaining == true && self?.viewModel.emptyDatastate.value.isDone == true
       })
@@ -74,6 +75,12 @@ class MovieListViewController: ViewController {
       })
       .subscribe(onNext: { [weak self] contentOffset in
         self?.viewModel.getMovies()
+      }).disposed(by: disposeBag)
+    
+    tableView.rx
+      .itemSelected
+      .subscribe(onNext: { [weak self] indexPath in
+        self?.pushMovieDetailView(for: indexPath.row)
       }).disposed(by: disposeBag)
   }
   
@@ -154,9 +161,22 @@ class MovieListViewController: ViewController {
       .subscribe(onNext: { [weak self] text in
         self?.viewModel.filterMovies(for: text ?? "")
       }).disposed(by: disposeBag)
+    
+    tableView.rx
+    .itemSelected
+    .subscribe(onNext: { [weak self] indexPath in
+      self?.movieFilterSearchController.dismiss(animated: false, completion: nil)
+      self?.pushMovieDetailView(for: indexPath.row, isSearchActive: true)
+    }).disposed(by: disposeBag)
   }
   
   @objc func showSearchBar() {
     self.present(movieFilterSearchController, animated: true, completion: nil)
   }
+  
+  private func pushMovieDetailView(for index: Int, isSearchActive: Bool = false) {
+    let vc = MovieDetailViewController.initalise()
+    self.navigationController?.pushViewController(vc, animated: true)
+  }
+  
 }
