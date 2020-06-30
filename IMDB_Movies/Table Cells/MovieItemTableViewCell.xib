@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="134" id="KGk-i7-Jjw" customClass="MovieItemTableViewCell" customModule="IMDB_Movies" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="298" height="134"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="298" height="134"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sn3-Aj-Dpd">
+                        <rect key="frame" x="16" y="16" width="66.5" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Sn3-Aj-Dpd" secondAttribute="height" multiplier="2:3" id="JEe-no-xKv"/>
+                            <constraint firstAttribute="height" constant="100" id="NrH-Jz-7nd"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7X-rK-O0x">
+                        <rect key="frame" x="98.5" y="24" width="183.5" height="22"/>
+                        <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Sn3-Aj-Dpd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Ntd-Rn-CjU"/>
+                    <constraint firstItem="u7X-rK-O0x" firstAttribute="top" secondItem="Sn3-Aj-Dpd" secondAttribute="top" constant="8" id="P5b-uJ-WIu"/>
+                    <constraint firstItem="Sn3-Aj-Dpd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="TBS-as-5Mc"/>
+                    <constraint firstItem="u7X-rK-O0x" firstAttribute="leading" secondItem="Sn3-Aj-Dpd" secondAttribute="trailing" constant="16" id="cbJ-Et-tcZ"/>
+                    <constraint firstAttribute="trailing" secondItem="u7X-rK-O0x" secondAttribute="trailing" constant="16" id="rEn-YN-uFO"/>
+                    <constraint firstAttribute="bottom" secondItem="Sn3-Aj-Dpd" secondAttribute="bottom" constant="16" id="vRN-ph-P8c"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="movieImageView" destination="Sn3-Aj-Dpd" id="mCH-Ji-Q7i"/>
+                <outlet property="movieTitleLabel" destination="u7X-rK-O0x" id="Ghf-Yz-ATZ"/>
+            </connections>
+            <point key="canvasLocation" x="115.94202898550725" y="114.50892857142857"/>
+        </tableViewCell>
+    </objects>
+</document>
