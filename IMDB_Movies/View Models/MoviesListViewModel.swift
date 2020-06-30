@@ -18,6 +18,11 @@ class MoviesListViewModel: ViewModel {
   var emptyDatastate = BehaviorRelay<DataState>.init(value: .loading(title: "", message: ""))
   var moreRemaining = false
   
+  private let searchDisplayDataSubject = PublishSubject<[MovieItemTableCellModel]>()
+  var searchDisplayData: Observable<[MovieItemTableCellModel]> {
+    return searchDisplayDataSubject.asObserver()
+  }
+  
   private let dataProvider = MovieDataProvider()
   
   private var movies: [MovieModel] = []
@@ -29,6 +34,7 @@ class MoviesListViewModel: ViewModel {
     } else {
       let section = RxAnimatableTableSectionModel(header: "loading", rows: [ActivityIndicatorTableModel()])
       displayData.accept([movieListSection, section])
+      emptyDatastate.accept(.loadingRemaining)
     }
     dataProvider.getMovies(page: currentPage)
       .subscribe { [weak self] (event) in
@@ -55,6 +61,12 @@ class MoviesListViewModel: ViewModel {
       emptyDatastate.accept(.done)
       displayData.accept([movieListSection])
     }
+  }
+  
+  func filterMovies(for string: String) {
+    let searchString = string.replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression, range: nil).trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
+    let filteredOptions = movies.filter({ $0.name.contains(searchString) }).map({ MovieItemTableCellModel.from($0) })
+    searchDisplayDataSubject.onNext(filteredOptions)
   }
 }
 

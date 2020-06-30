@@ -9,6 +9,13 @@
 import UIKit
 
 class ActivityIndicatorTableViewCell: UITableViewCell {
+  
+  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+  
+  func startAnimating() {
+    activityIndicator.startAnimating()
+  }
+  
 }
 
 class ActivityIndicatorTableModel: RxAnimatableTableCellModel {
