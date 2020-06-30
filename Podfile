@@ -9,6 +9,7 @@ target 'IMDB_Movies' do
   #Networking Library.
   pod 'Alamofire', '~> 4.8'
   pod 'SwiftyJSON', '~> 5.0'
+  pod 'SDWebImage', '~> 5.5'
   
   #Reactive Libraries
   pod 'RxSwift', '~> 5.0'

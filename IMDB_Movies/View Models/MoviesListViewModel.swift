@@ -13,33 +13,49 @@ import RxDataSources
 class MoviesListViewModel: ViewModel {
   
   // Table data
-  private var data: [RxAnimatableCollectionSectionModel] = []
-  var displayData = BehaviorRelay<[RxAnimatableCollectionSectionModel]>.init(value: [])
-  var state = BehaviorRelay<DataState>.init(value: .loading(title: "", message: ""))
+  private var movieListSection = RxAnimatableTableSectionModel(header: "movieListSection", rows: [])
+  var displayData = BehaviorRelay<[RxAnimatableTableSectionModel]>.init(value: [])
+  var emptyDatastate = BehaviorRelay<DataState>.init(value: .loading(title: "", message: ""))
+  var moreRemaining = false
   
   private let dataProvider = MovieDataProvider()
   
   private var movies: [MovieModel] = []
+  private var currentPage = 1
   
   func getMovies() {
     if movies.count == 0 {
-      state.accept(loadingState)
+      emptyDatastate.accept(loadingState)
     } else {
-      
+      let section = RxAnimatableTableSectionModel(header: "loading", rows: [ActivityIndicatorTableModel()])
+      displayData.accept([movieListSection, section])
     }
-    dataProvider.getMovies(page: 1)
+    dataProvider.getMovies(page: currentPage)
       .subscribe { [weak self] (event) in
         guard let this = self else { return }
         if let list = event.element {
+          this.currentPage += 1
           this.movies.append(contentsOf: list)
-          // this.state.accept(.done)
+          this.appendAndRefreshList(list)
+          this.moreRemaining = list.count > 0
         }
         if let error = event.error {
-          this.state.accept(.failed(title: this.failedTitle, message: error.localizedDescription))
+          this.emptyDatastate.accept(.failed(title: this.failedTitle, message: error.localizedDescription))
         }
     }.disposed(by: disposeBag)
   }
   
+  private func appendAndRefreshList(_ items: [MovieModel]) {
+    items.forEach { (item) in
+      movieListSection.rows.append(MovieItemTableCellModel.from(item))
+    }
+    if movieListSection.rows.count == 0 {
+      emptyDatastate.accept(noDataState)
+    } else {
+      emptyDatastate.accept(.done)
+      displayData.accept([movieListSection])
+    }
+  }
 }
 
 extension MoviesListViewModel {

@@ -13,18 +13,24 @@ struct APPURL {
   private enum Environment {
     enum dev {
       static let baseURL = "https://api.themoviedb.org/3"
+      static let imageRoute = "https://image.tmdb.org/t/p/w500"
     }
   }
   
   private struct APICalls {
     static let environment = Environment.dev.self
     static let baseURL = environment.baseURL
+    static let imageRoute = environment.imageRoute
     
     static let popularMoviesList = "/movie/popular"
   }
   
   static var popularMoviesList: String {
     return APICalls.baseURL + APICalls.popularMoviesList
+  }
+  
+  static var imageRoute: String {
+    return APICalls.imageRoute
   }
   
 }

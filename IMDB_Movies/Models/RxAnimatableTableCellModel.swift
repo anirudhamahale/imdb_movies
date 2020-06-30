@@ -1,5 +1,5 @@
 //
-//  RxAnimatableCollectionCellModel.swift
+//  RxAnimatableTableCellModel.swift
 //  IMDB_Movies
 //
 //  Created by Anirudha Mahale on 30/06/20.
@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class RxAnimatableCollectionCellModel: IdentifiableType, Equatable {
+class RxAnimatableTableCellModel: IdentifiableType, Equatable {
   var identity: String {
     return id
   }
@@ -18,7 +18,7 @@ class RxAnimatableCollectionCellModel: IdentifiableType, Equatable {
   var id = ""
   typealias Identity = String
   
-  static func == (lhs: RxAnimatableCollectionCellModel, rhs: RxAnimatableCollectionCellModel) -> Bool {
+  static func == (lhs: RxAnimatableTableCellModel, rhs: RxAnimatableTableCellModel) -> Bool {
     return lhs.id == rhs.id
   }
   

@@ -10,6 +10,7 @@ import UIKit
 
 struct Images {
   static let circularLoader = getImageFrom(name: "circularLoader")
+  static let placeholder = getImageFrom(name: "placeholder")
   
   static func getImageFrom(name: String) -> UIImage {
     return UIImage(named: name)!
