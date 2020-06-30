@@ -25,6 +25,7 @@
 		8F395FDE24AB22E9005A995B /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F395FDC24AB22E9005A995B /* OpenSans-Bold.ttf */; };
 		8F395FDF24AB22E9005A995B /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F395FDD24AB22E9005A995B /* OpenSans-Regular.ttf */; };
 		8F395FE124AB233E005A995B /* ImagesConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F395FE024AB233E005A995B /* ImagesConstant.swift */; };
+		8F395FE324AB3581005A995B /* URLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F395FE224AB3581005A995B /* URLConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		8F395FDC24AB22E9005A995B /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		8F395FDD24AB22E9005A995B /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		8F395FE024AB233E005A995B /* ImagesConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesConstant.swift; sourceTree = "<group>"; };
+		8F395FE224AB3581005A995B /* URLConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstants.swift; sourceTree = "<group>"; };
 		AD46CA06C7A03D64F67B1ABC /* Pods-IMDB_Movies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMDB_Movies.debug.xcconfig"; path = "Target Support Files/Pods-IMDB_Movies/Pods-IMDB_Movies.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,6 +124,7 @@
 				8F395FD424AB21ED005A995B /* Extensions */,
 				8F395FD724AB222D005A995B /* Constants */,
 				8F395FD924AB2295005A995B /* CFont.swift */,
+				8F395FE224AB3581005A995B /* URLConstants.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				8F395FBA24AB019C005A995B /* RemoteDataProvider.swift in Sources */,
 				8F395FD224AB21A9005A995B /* ColorsConstant.swift in Sources */,
 				8F395FDA24AB2295005A995B /* CFont.swift in Sources */,
+				8F395FE324AB3581005A995B /* URLConstants.swift in Sources */,
 				8F395FA924AAFD15005A995B /* ViewController.swift in Sources */,
 				8F395FA524AAFD15005A995B /* AppDelegate.swift in Sources */,
 				8F395FCD24AB20AB005A995B /* ViewModel.swift in Sources */,
