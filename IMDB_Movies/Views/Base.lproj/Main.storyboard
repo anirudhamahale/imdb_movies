@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tNH-za-tOY">
-    <device id="retina4_7" orientation="landscape" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
@@ -21,18 +21,18 @@
             <objects>
                 <viewController storyboardIdentifier="MovieListViewController" id="BYZ-38-t0r" customClass="MovieListViewController" customModule="IMDB_Movies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="343"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LOs-1s-HKL">
-                                <rect key="frame" x="0.0" y="0.0" width="667" height="343"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="Eek-ns-e4u">
-                                        <rect key="frame" x="0.0" y="28" width="667" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Eek-ns-e4u" id="AuS-VI-cgA">
-                                            <rect key="frame" x="0.0" y="0.0" width="667" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -62,15 +62,15 @@
             <objects>
                 <tableViewController storyboardIdentifier="SearchMovieResultController" id="WD9-4C-87R" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="yqR-dy-9Qz">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ydF-bi-8br">
-                                <rect key="frame" x="0.0" y="28" width="667" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="ydF-bi-8br">
+                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ydF-bi-8br" id="bfF-wr-wA7">
-                                    <rect key="frame" x="0.0" y="0.0" width="667" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -90,27 +90,25 @@
             <objects>
                 <viewController storyboardIdentifier="MovieDetailViewController" id="ept-Ih-Pzf" customClass="MovieDetailViewController" customModule="IMDB_Movies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xn8-Qb-LKj">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FQ8-CJ-HJ8">
-                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TCE-Br-dK6">
-                                        <rect key="frame" x="0.0" y="0.0" width="667" height="534.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="651.5"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="0cn-v8-SOK">
-                                                <rect key="frame" x="16" y="16" width="272" height="204"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="750" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="0cn-v8-SOK">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="281.5"/>
+                                                <color key="backgroundColor" red="0.058823529409999999" green="0.20392156859999999" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="0cn-v8-SOK" secondAttribute="height" multiplier="1:1" id="5MT-PQ-7U6"/>
                                                     <constraint firstAttribute="width" secondItem="0cn-v8-SOK" secondAttribute="height" multiplier="4:3" id="I0g-F5-hxO"/>
                                                     <constraint firstAttribute="width" secondItem="0cn-v8-SOK" secondAttribute="height" multiplier="4:3" id="aqV-hP-Tj6"/>
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="constraints">
-                                                        <exclude reference="5MT-PQ-7U6"/>
                                                         <exclude reference="I0g-F5-hxO"/>
-                                                        <exclude reference="aqV-hP-Tj6"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="heightClass=compact">
@@ -125,11 +123,10 @@
                                                 </variation>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SFJ-qK-shm">
-                                                <rect key="frame" x="312" y="180" width="339" height="40"/>
+                                                <rect key="frame" x="24" y="346.5" width="327" height="40"/>
                                                 <color key="backgroundColor" red="0.058823529409999999" green="0.20392156859999999" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="K0h-K6-JHn"/>
-                                                    <constraint firstAttribute="height" constant="40" id="vTF-VM-s8u"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
                                                 <state key="normal" title="Watch Trailer">
@@ -137,54 +134,54 @@
                                                 </state>
                                                 <variation key="heightClass=compact">
                                                     <mask key="constraints">
-                                                        <exclude reference="K0h-K6-JHn"/>
+                                                        <include reference="K0h-K6-JHn"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="heightClass=regular-widthClass=regular">
                                                     <mask key="constraints">
-                                                        <exclude reference="K0h-K6-JHn"/>
+                                                        <include reference="K0h-K6-JHn"/>
                                                     </mask>
                                                 </variation>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genres" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tu1-LV-y5z">
-                                                <rect key="frame" x="16" y="236" width="635" height="19.5"/>
+                                                <rect key="frame" x="24" y="402.5" width="327" height="19.5"/>
                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
                                                 <color key="textColor" red="0.058823529409999999" green="0.20392156859999999" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genres" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3m5-OK-h09">
-                                                <rect key="frame" x="16" y="255.5" width="635" height="19.5"/>
+                                                <rect key="frame" x="24" y="422" width="327" height="19.5"/>
                                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
                                                 <color key="textColor" red="0.058823529409999999" green="0.20392156859999999" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unL-TY-Rgv">
-                                                <rect key="frame" x="16" y="291" width="635" height="19.5"/>
+                                                <rect key="frame" x="24" y="457.5" width="327" height="19.5"/>
                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
                                                 <color key="textColor" red="0.058823529409999999" green="0.20392156859999999" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genres" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaT-Hw-8uv">
-                                                <rect key="frame" x="16" y="310.5" width="635" height="19.5"/>
+                                                <rect key="frame" x="24" y="477" width="327" height="19.5"/>
                                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
                                                 <color key="textColor" red="0.058823529409999999" green="0.20392156859999999" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HMc-c4-aae">
-                                                <rect key="frame" x="16" y="346" width="635" height="19.5"/>
+                                                <rect key="frame" x="24" y="512.5" width="327" height="19.5"/>
                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
                                                 <color key="textColor" red="0.058823529409999999" green="0.20392156859999999" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9v7-l4-Zpc">
-                                                <rect key="frame" x="16" y="365.5" width="635" height="153"/>
-                                                <string key="text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</string>
+                                                <rect key="frame" x="24" y="532" width="327" height="95.5"/>
+                                                <string key="text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</string>
                                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
                                                 <color key="textColor" red="0.058823529409999999" green="0.20392156859999999" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="glB-fO-vbp">
-                                                <rect key="frame" x="312" y="16" width="339" height="33"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie name" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="glB-fO-vbp">
+                                                <rect key="frame" x="24" y="297.5" width="327" height="33"/>
                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="24"/>
                                                 <color key="textColor" red="0.058823529409999999" green="0.20392156859999999" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -192,10 +189,10 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="glB-fO-vbp" secondAttribute="trailing" constant="24" id="0ah-dU-q9H"/>
                                             <constraint firstItem="unL-TY-Rgv" firstAttribute="trailing" secondItem="3m5-OK-h09" secondAttribute="trailing" id="10O-9o-EB2"/>
                                             <constraint firstItem="9v7-l4-Zpc" firstAttribute="leading" secondItem="HMc-c4-aae" secondAttribute="leading" id="1jA-UG-oLY"/>
                                             <constraint firstItem="unL-TY-Rgv" firstAttribute="leading" secondItem="3m5-OK-h09" secondAttribute="leading" id="25F-L6-RP4"/>
-                                            <constraint firstItem="glB-fO-vbp" firstAttribute="centerX" secondItem="TCE-Br-dK6" secondAttribute="centerX" id="2nT-9V-rTq"/>
                                             <constraint firstItem="9v7-l4-Zpc" firstAttribute="top" secondItem="HMc-c4-aae" secondAttribute="bottom" id="36J-JC-WOI"/>
                                             <constraint firstItem="SFJ-qK-shm" firstAttribute="trailing" secondItem="glB-fO-vbp" secondAttribute="trailing" id="3kd-vB-dR4"/>
                                             <constraint firstItem="Tu1-LV-y5z" firstAttribute="leading" secondItem="0cn-v8-SOK" secondAttribute="leading" id="3x0-Ch-Clb"/>
@@ -209,6 +206,7 @@
                                             <constraint firstItem="HMc-c4-aae" firstAttribute="top" secondItem="xaT-Hw-8uv" secondAttribute="bottom" constant="16" id="Cns-4m-pQ2"/>
                                             <constraint firstItem="3m5-OK-h09" firstAttribute="leading" secondItem="Tu1-LV-y5z" secondAttribute="leading" id="EEK-kY-uy8"/>
                                             <constraint firstItem="unL-TY-Rgv" firstAttribute="trailing" secondItem="3m5-OK-h09" secondAttribute="trailing" id="EOk-bO-N2Z"/>
+                                            <constraint firstAttribute="trailing" secondItem="glB-fO-vbp" secondAttribute="trailing" constant="24" id="ERb-fD-usg"/>
                                             <constraint firstAttribute="bottom" secondItem="9v7-l4-Zpc" secondAttribute="bottom" constant="16" id="EWE-pv-tLV"/>
                                             <constraint firstItem="glB-fO-vbp" firstAttribute="leading" secondItem="0cn-v8-SOK" secondAttribute="trailing" constant="24" id="FAn-TD-2Sv"/>
                                             <constraint firstItem="HMc-c4-aae" firstAttribute="trailing" secondItem="xaT-Hw-8uv" secondAttribute="trailing" id="FZZ-yh-ozd"/>
@@ -288,6 +286,21 @@
                                                 <exclude reference="WjU-gn-xlR"/>
                                                 <exclude reference="qid-XN-sgB"/>
                                                 <exclude reference="w7b-L6-Rns"/>
+                                                <exclude reference="0ah-dU-q9H"/>
+                                                <exclude reference="AV4-dU-RlY"/>
+                                                <exclude reference="ERb-fD-usg"/>
+                                                <exclude reference="FAn-TD-2Sv"/>
+                                                <exclude reference="IGo-Gu-ITU"/>
+                                                <exclude reference="e78-Xw-lGc"/>
+                                                <exclude reference="gHD-hB-ftr"/>
+                                                <exclude reference="kPG-L0-pd6"/>
+                                                <exclude reference="nZb-ki-29D"/>
+                                                <exclude reference="3kd-vB-dR4"/>
+                                                <exclude reference="8X0-UF-zan"/>
+                                                <exclude reference="Moo-Rp-ccO"/>
+                                                <exclude reference="YZY-bs-k9o"/>
+                                                <exclude reference="ZCI-Lf-nso"/>
+                                                <exclude reference="mr9-v0-GQI"/>
                                                 <exclude reference="3x0-Ch-Clb"/>
                                                 <exclude reference="BnE-1r-HtJ"/>
                                                 <exclude reference="bd3-Sw-bDq"/>
@@ -306,13 +319,6 @@
                                                 <exclude reference="eOg-wD-Ssn"/>
                                                 <exclude reference="tpU-in-YBE"/>
                                                 <exclude reference="xmA-qZ-tzB"/>
-                                                <exclude reference="AV4-dU-RlY"/>
-                                                <exclude reference="FAn-TD-2Sv"/>
-                                                <exclude reference="IGo-Gu-ITU"/>
-                                                <exclude reference="e78-Xw-lGc"/>
-                                                <exclude reference="gHD-hB-ftr"/>
-                                                <exclude reference="kPG-L0-pd6"/>
-                                                <exclude reference="nZb-ki-29D"/>
                                                 <exclude reference="NEh-4B-6Tk"/>
                                                 <exclude reference="Pbg-Nn-9th"/>
                                                 <exclude reference="QDA-fA-qdy"/>
@@ -333,12 +339,6 @@
                                                 <exclude reference="PQ3-LE-8q3"/>
                                                 <exclude reference="SW6-wg-b0i"/>
                                                 <exclude reference="riU-sl-aVd"/>
-                                                <exclude reference="3kd-vB-dR4"/>
-                                                <exclude reference="8X0-UF-zan"/>
-                                                <exclude reference="Moo-Rp-ccO"/>
-                                                <exclude reference="YZY-bs-k9o"/>
-                                                <exclude reference="ZCI-Lf-nso"/>
-                                                <exclude reference="mr9-v0-GQI"/>
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=compact">
@@ -348,6 +348,18 @@
                                                 <exclude reference="Ij2-7g-3sm"/>
                                                 <include reference="WjU-gn-xlR"/>
                                                 <exclude reference="Zfb-qo-clN"/>
+                                                <include reference="AV4-dU-RlY"/>
+                                                <include reference="FAn-TD-2Sv"/>
+                                                <exclude reference="G2e-tu-JFx"/>
+                                                <exclude reference="atM-Ub-T43"/>
+                                                <include reference="kPG-L0-pd6"/>
+                                                <include reference="nZb-ki-29D"/>
+                                                <exclude reference="IyT-Ol-FUD"/>
+                                                <include reference="YZY-bs-k9o"/>
+                                                <include reference="ZCI-Lf-nso"/>
+                                                <exclude reference="jUD-rv-zIi"/>
+                                                <include reference="mr9-v0-GQI"/>
+                                                <exclude reference="wuo-p6-ZIw"/>
                                                 <include reference="3x0-Ch-Clb"/>
                                                 <include reference="BnE-1r-HtJ"/>
                                                 <exclude reference="YID-bQ-7jh"/>
@@ -366,13 +378,6 @@
                                                 <include reference="Y3U-y6-zvn"/>
                                                 <exclude reference="bjL-A0-yea"/>
                                                 <include reference="eOg-wD-Ssn"/>
-                                                <exclude reference="2nT-9V-rTq"/>
-                                                <include reference="AV4-dU-RlY"/>
-                                                <include reference="FAn-TD-2Sv"/>
-                                                <exclude reference="G2e-tu-JFx"/>
-                                                <exclude reference="atM-Ub-T43"/>
-                                                <include reference="kPG-L0-pd6"/>
-                                                <include reference="nZb-ki-29D"/>
                                                 <include reference="QDA-fA-qdy"/>
                                                 <include reference="Zwf-8N-YF2"/>
                                                 <exclude reference="cfn-6g-q0b"/>
@@ -393,12 +398,16 @@
                                                 <exclude reference="e8y-fV-ItE"/>
                                                 <exclude reference="fJz-4U-jnD"/>
                                                 <include reference="riU-sl-aVd"/>
-                                                <exclude reference="IyT-Ol-FUD"/>
-                                                <include reference="YZY-bs-k9o"/>
-                                                <include reference="ZCI-Lf-nso"/>
-                                                <exclude reference="jUD-rv-zIi"/>
-                                                <include reference="mr9-v0-GQI"/>
-                                                <exclude reference="wuo-p6-ZIw"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="widthClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="ERb-fD-usg"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=compact-widthClass=compact">
+                                            <mask key="constraints">
+                                                <exclude reference="ERb-fD-usg"/>
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular">
@@ -409,6 +418,17 @@
                                                 <exclude reference="Zfb-qo-clN"/>
                                                 <include reference="qid-XN-sgB"/>
                                                 <include reference="w7b-L6-Rns"/>
+                                                <exclude reference="G2e-tu-JFx"/>
+                                                <include reference="IGo-Gu-ITU"/>
+                                                <exclude reference="atM-Ub-T43"/>
+                                                <include reference="e78-Xw-lGc"/>
+                                                <include reference="gHD-hB-ftr"/>
+                                                <include reference="3kd-vB-dR4"/>
+                                                <include reference="8X0-UF-zan"/>
+                                                <exclude reference="IyT-Ol-FUD"/>
+                                                <include reference="Moo-Rp-ccO"/>
+                                                <exclude reference="jUD-rv-zIi"/>
+                                                <exclude reference="wuo-p6-ZIw"/>
                                                 <exclude reference="YID-bQ-7jh"/>
                                                 <include reference="bd3-Sw-bDq"/>
                                                 <exclude reference="gSW-M4-fib"/>
@@ -427,12 +447,6 @@
                                                 <exclude reference="bjL-A0-yea"/>
                                                 <include reference="tpU-in-YBE"/>
                                                 <include reference="xmA-qZ-tzB"/>
-                                                <exclude reference="2nT-9V-rTq"/>
-                                                <exclude reference="G2e-tu-JFx"/>
-                                                <include reference="IGo-Gu-ITU"/>
-                                                <exclude reference="atM-Ub-T43"/>
-                                                <include reference="e78-Xw-lGc"/>
-                                                <include reference="gHD-hB-ftr"/>
                                                 <include reference="NEh-4B-6Tk"/>
                                                 <include reference="Pbg-Nn-9th"/>
                                                 <exclude reference="cfn-6g-q0b"/>
@@ -453,12 +467,6 @@
                                                 <include reference="SW6-wg-b0i"/>
                                                 <exclude reference="e8y-fV-ItE"/>
                                                 <exclude reference="fJz-4U-jnD"/>
-                                                <include reference="3kd-vB-dR4"/>
-                                                <include reference="8X0-UF-zan"/>
-                                                <exclude reference="IyT-Ol-FUD"/>
-                                                <include reference="Moo-Rp-ccO"/>
-                                                <exclude reference="jUD-rv-zIi"/>
-                                                <exclude reference="wuo-p6-ZIw"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -475,7 +483,7 @@
                                     <constraint firstItem="TCE-Br-dK6" firstAttribute="width" secondItem="FQ8-CJ-HJ8" secondAttribute="width" id="nFi-hU-U5p"/>
                                     <constraint firstAttribute="bottom" secondItem="TCE-Br-dK6" secondAttribute="bottom" id="pCj-QP-eoh"/>
                                     <constraint firstItem="TCE-Br-dK6" firstAttribute="height" secondItem="FQ8-CJ-HJ8" secondAttribute="height" priority="250" id="pr9-IF-NUb"/>
-                                    <constraint firstItem="TCE-Br-dK6" firstAttribute="height" secondItem="FQ8-CJ-HJ8" secondAttribute="height" priority="249" id="x00-lL-tdh"/>
+                                    <constraint firstItem="TCE-Br-dK6" firstAttribute="height" secondItem="FQ8-CJ-HJ8" secondAttribute="height" priority="250" id="x00-lL-tdh"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -539,7 +547,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4wL-lw-Uhz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2766.796875" y="64.84375"/>
+            <point key="canvasLocation" x="2765.5999999999999" y="64.31784107946028"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="goZ-x9-tNf">
@@ -547,7 +555,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tNH-za-tOY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="Xzi-Ae-8wh">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="32"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.058823529409999999" green="0.20392156859999999" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

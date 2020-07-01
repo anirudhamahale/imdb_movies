@@ -10,4 +10,5 @@ import Foundation
 
 struct StringConstant {
   static let api_key = "7fa9c84e277d5b6e5344bf344163b3a8"
+  static let invalidJSON = "Invalid JSON format"
 }
