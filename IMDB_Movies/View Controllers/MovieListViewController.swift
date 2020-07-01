@@ -144,6 +144,7 @@ class MovieListViewController: ViewController {
     searchBar.placeholder = "Filter Movies"
     searchBar.barTintColor = Colors.primary
     searchBar.tintColor = UIColor.white
+    searchBar.isTranslucent = false
     
     if let textField = movieFilterSearchController.searchBar.value(forKey: "searchField") as? UITextField {
       textField.tintColor = .white

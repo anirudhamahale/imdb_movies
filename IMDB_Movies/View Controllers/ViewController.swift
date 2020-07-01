@@ -30,7 +30,6 @@ class ViewController: UIViewController {
     bindViews()
     finishedLoading()
     
-    // setNeedsStatusBarAppearanceUpdate
     self.setNeedsStatusBarAppearanceUpdate()
   }
   

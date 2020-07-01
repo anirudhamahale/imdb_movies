@@ -31,4 +31,16 @@ class MovieRemoteDataProvider: RemoteDataProvider {
         throw CError.create(code: 400, description: StringConstant.invalidJSON)
     }
   }
+  
+  func getVideoId(from movieId: Int) -> Observable<String> {
+    let url = APPURL.movieDetails + "/\(movieId)" + "/videos"
+    let params = ["api_key": StringConstant.api_key]
+    return get(url, parameters: params)
+      .map { (response) -> String in
+        if let videoId = MovieJSONMapper.getVideoId(from: response.1) {
+          return videoId
+        }
+        throw CError.create(code: 400, description: StringConstant.invalidJSON)
+    }
+  }
 }

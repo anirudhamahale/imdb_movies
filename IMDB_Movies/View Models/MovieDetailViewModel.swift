@@ -13,7 +13,7 @@ import RxDataSources
 class MovieDetailViewModel: ViewModel {
   
   var emptyDatastate = BehaviorRelay<DataState>.init(value: .loading(title: "", message: ""))
-  var movieId: Int
+  private(set) var movieId: Int
   
   let title = BehaviorRelay<String>(value: "")
   let genres = BehaviorRelay<String>(value: "")
