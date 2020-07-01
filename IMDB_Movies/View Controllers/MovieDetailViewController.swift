@@ -69,7 +69,7 @@ class MovieDetailViewController: ViewController {
     watchTrailerButton.rx
       .tap
       .subscribe(onNext: { [weak self] _ in
-        
+        self?.pushVideoPlayer()
       }).disposed(by: disposeBag)
   }
   
@@ -83,4 +83,11 @@ class MovieDetailViewController: ViewController {
       label.text = text
     }).disposed(by: viewModel.disposeBag)
   }
+  
+  private func pushVideoPlayer() {
+    let vc = TrailerViewController.initalise(with: viewModel.movieId)
+    vc.modalPresentationStyle = .fullScreen
+    self.present(vc, animated: true, completion: nil)
+  }
+  
 }
