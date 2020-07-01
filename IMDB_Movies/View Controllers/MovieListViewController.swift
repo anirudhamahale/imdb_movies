@@ -31,37 +31,23 @@ class MovieListViewController: ViewController {
     tableView.estimatedSectionHeaderHeight = 0
     tableView.estimatedSectionFooterHeight = 0
     
-    configureEmptyDataSetView()
+    addEmptyDataSetView()
     setupSearchController()
   }
   
   override func bindViews() {
     super.bindViews()
     
+    configureEmptyData(for: viewModel)
+    
+    emptyDataSetView?.didTapActionButton
+    .subscribe(onNext: { [weak self] in
+      self?.viewModel.getMovies()
+    }).disposed(by: emptyDataSetView!.disposeBag)
+    
     viewModel.displayData
       .bind(to: tableView.rx.items(dataSource: getDataSource()))
       .disposed(by: disposeBag)
-    
-    viewModel.emptyDatastate
-      .subscribe { [weak self] (event) in
-        guard let this = self else { return }
-        if let event = event.element {
-          switch event {
-          case .loading(let title, let description):
-            this.emptyDataSetView?.setProgress(title: title, description: description)
-          case .noData(let title, let description):
-            this.emptyDataSetView?.setNoData(image: nil, title: title, description: description)
-          case .failed(let title, let message):
-            this.emptyDataSetView?.setFailed(image: nil, title: title, description: message, buttonTitle: "Retry")
-            this.emptyDataSetView?.didTapActionButton
-              .subscribe(onNext: { [weak self] in
-                self?.viewModel.getMovies()
-              }).disposed(by: this.emptyDataSetView!.disposeBag)
-          default:
-            this.emptyDataSetView?.hide()
-          }
-        }
-    }.disposed(by: disposeBag)
     
     tableView.rx
       .contentOffset

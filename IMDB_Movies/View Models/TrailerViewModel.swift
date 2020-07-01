@@ -12,7 +12,6 @@ import RxDataSources
 
 class TrailerViewModel: ViewModel {
   
-  var emptyDatastate = BehaviorRelay<DataState>.init(value: .loading(title: "", message: ""))
   private(set) var movieId: Int
   
   let videoId = BehaviorRelay<String>(value: "")

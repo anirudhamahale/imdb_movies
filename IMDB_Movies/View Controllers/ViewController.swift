@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     self.setNeedsStatusBarAppearanceUpdate()
   }
   
-  func configureEmptyDataSetView(on view: UIView? = nil, insets: UIEdgeInsets? = nil) {
+  func addEmptyDataSetView(on view: UIView? = nil, insets: UIEdgeInsets? = nil) {
     let parentView = view ?? self.view
     emptyDataSetView = MEmptyDataSetView()
     emptyDataSetView?.translatesAutoresizingMaskIntoConstraints = false
@@ -46,6 +46,24 @@ class ViewController: UIViewController {
      emptyDataSetView?.bottomAnchor.constraint(equalTo: parentView!.bottomAnchor, constant: insets?.bottom ?? 0)].forEach { $0?.isActive = true }
     
     self.view.layoutIfNeeded()
+  }
+  
+  func configureEmptyData(for viewModel: ViewModel) {
+    viewModel.emptyDatastate
+      .subscribe { [weak self] (event) in
+        if let event = event.element {
+          switch event {
+          case .loading(let title, let description):
+            self?.emptyDataSetView?.setProgress(title: title, description: description)
+          case .noData(let title, let description):
+            self?.emptyDataSetView?.setNoData(image: nil, title: title, description: description)
+          case .failed(let title, let message):
+            self?.emptyDataSetView?.setFailed(image: nil, title: title, description: message, buttonTitle: "Retry")
+          default:
+            self?.emptyDataSetView?.hide()
+          }
+        }
+    }.disposed(by: viewModel.disposeBag)
   }
   
   func setupView() {}

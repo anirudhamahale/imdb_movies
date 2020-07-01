@@ -17,6 +17,7 @@ class ViewModel {
     }
   }
   
+  var emptyDatastate = BehaviorRelay<DataState>.init(value: .loading(title: "", message: ""))
   let disposeBag = DisposeBag()
   
 }

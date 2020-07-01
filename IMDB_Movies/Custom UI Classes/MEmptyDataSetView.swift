@@ -188,7 +188,6 @@ class MEmptyDataSetView: UIView, MEmptyDataSetViewDelegate {
   }
   
   private func addButton(title: String, topConstraint: NSLayoutYAxisAnchor) -> NSLayoutYAxisAnchor {
-    // button = UIButton()
     button.translatesAutoresizingMaskIntoConstraints = false
     
     let baseView = UIView()

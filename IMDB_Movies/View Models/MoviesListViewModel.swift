@@ -15,7 +15,6 @@ class MoviesListViewModel: ViewModel {
   // Table data
   private var movieListSection = RxAnimatableTableSectionModel(header: "movieListSection", rows: [])
   var displayData = BehaviorRelay<[RxAnimatableTableSectionModel]>.init(value: [])
-  var emptyDatastate = BehaviorRelay<DataState>.init(value: .loading(title: "", message: ""))
   var moreRemaining = false
   
   private let searchDisplayDataSubject = PublishSubject<[MovieItemTableCellModel]>()
