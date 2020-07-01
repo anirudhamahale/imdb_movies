@@ -28,6 +28,11 @@
                             <constraint firstAttribute="width" secondItem="Sn3-Aj-Dpd" secondAttribute="height" multiplier="2:3" id="JEe-no-xKv"/>
                             <constraint firstAttribute="height" constant="100" id="NrH-Jz-7nd"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7X-rK-O0x">
                         <rect key="frame" x="98.5" y="24" width="183.5" height="22"/>

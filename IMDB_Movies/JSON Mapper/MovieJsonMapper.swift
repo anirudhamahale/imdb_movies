@@ -30,7 +30,7 @@ class MovieJSONMapper {
     guard let date = json["release_date"].string else { return nil }
     guard let genres = json["genres"].array?.compactMap({ (item) -> String? in
       return item["name"].string
-    }).joined(separator: ",") else { return nil }
+    }).joined(separator: ", ") else { return nil }
     guard let overview = json["overview"].string else { return nil }
     
     return MovieModel(id: id, name: title, image: image, date: date, genres: genres, overview: overview)

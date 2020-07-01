@@ -50,9 +50,8 @@ class MovieDetailViewModel: ViewModel {
     
     let thumbnailUrl = APPURL.imageRoute + movie.image
     if let url = URL(string: thumbnailUrl) {
-      // imageUrl.onNext(url)
+      imageUrl.onNext(url)
     }
-    // https://image.tmdb.org/t/p/w500/jMO1icztaUUEUApdAQx0cZOt7b8.jpg
   }
   
   private func showFailedMessage(with error: String) {
@@ -77,4 +76,5 @@ extension MovieDetailViewModel {
     return "Failed to get Movie."
   }
 }
+
 

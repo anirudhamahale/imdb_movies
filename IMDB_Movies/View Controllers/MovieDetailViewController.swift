@@ -65,6 +65,12 @@ class MovieDetailViewController: ViewController {
       .subscribe(onNext: { [weak self] url in
         self?.movieImageView.setImage(with: url, placeholderImage: Images.placeholder)
       }).disposed(by: viewModel.disposeBag)
+    
+    watchTrailerButton.rx
+      .tap
+      .subscribe(onNext: { [weak self] _ in
+        
+      }).disposed(by: disposeBag)
   }
   
   override func finishedLoading() {
