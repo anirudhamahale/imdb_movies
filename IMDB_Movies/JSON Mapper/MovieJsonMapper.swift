@@ -15,9 +15,11 @@ class MovieJSONMapper {
     guard let result = json["results"].array else { return [] }
     let movies = result.compactMap { (item) -> MovieModel? in
       guard let id = item["id"].int else { return nil }
-      guard let name = item["title"].string else { return nil }
+      guard let title = item["title"].string else { return nil }
       guard let image = item["poster_path"].string else { return nil }
-      return MovieModel(id: id, name: name, image: image)
+      guard let date = item["release_date"].string else { return nil }
+      guard let overview = item["overview"].string else { return nil }
+      return MovieModel(id: id, name: title, image: image, date: date, genres: "", overview: overview)
     }
     return movies
   }

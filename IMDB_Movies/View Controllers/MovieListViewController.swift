@@ -51,6 +51,7 @@ class MovieListViewController: ViewController {
     
     tableView.rx
       .contentOffset
+      .throttle(.seconds(2), scheduler: MainScheduler.instance)
       .filter({ [weak self] (_) -> Bool in
         return self?.viewModel.moreRemaining == true && self?.viewModel.emptyDatastate.value.isDone == true
       })

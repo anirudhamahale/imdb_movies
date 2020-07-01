@@ -1,6 +1,11 @@
 PODS:
   - Alamofire (4.9.1)
   - Differentiator (4.0.1)
+  - Realm (3.19.1):
+    - Realm/Headers (= 3.19.1)
+  - Realm/Headers (3.19.1)
+  - RealmSwift (3.19.1):
+    - Realm (= 3.19.1)
   - RxAlamofire (5.1.0):
     - RxAlamofire/Core (= 5.1.0)
   - RxAlamofire/Core (5.1.0):
@@ -13,6 +18,9 @@ PODS:
     - Differentiator (~> 4.0)
     - RxCocoa (~> 5.0)
     - RxSwift (~> 5.0)
+  - RxRealm (1.0.0):
+    - RealmSwift (~> 3.14)
+    - RxSwift (~> 5.0)
   - RxRelay (5.1.1):
     - RxSwift (~> 5)
   - RxSwift (5.1.1)
@@ -21,46 +29,50 @@ PODS:
   - SDWebImage/Core (5.7.3)
   - SwiftyJSON (5.0.0)
   - youtube-ios-player-helper (1.0.2)
-  - YouTubePlayer (0.7.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.8)
+  - RealmSwift (~> 3.19.0)
   - RxAlamofire (~> 5.0)
   - RxCocoa (~> 5.0)
   - RxDataSources (~> 4.0.1)
+  - RxRealm
   - RxSwift (~> 5.0)
   - SDWebImage (~> 5.5)
   - SwiftyJSON (~> 5.0)
   - youtube-ios-player-helper
-  - YouTubePlayer
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - Differentiator
+    - Realm
+    - RealmSwift
     - RxAlamofire
     - RxCocoa
     - RxDataSources
+    - RxRealm
     - RxRelay
     - RxSwift
     - SDWebImage
     - SwiftyJSON
     - youtube-ios-player-helper
-    - YouTubePlayer
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
+  Realm: fb377747e694c7deb62d402400454134fe321bee
+  RealmSwift: 1302b0ab60f3105a2b214a735eeb0938607cf16b
   RxAlamofire: a2d7621de4c23a0c6e7b476b504acc32838ee341
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
+  RxRealm: 1e81dcfca1fb50c3e9b3e1f8102bc875c5156a2e
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SDWebImage: 97351f6582ceca541ea294ba66a1fcb342a331c2
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   youtube-ios-player-helper: 40b96e52c22445f0fdc43731cefa32c67075ff81
-  YouTubePlayer: bd78e43a1fb0f98cbfc40864514f44924e177147
 
-PODFILE CHECKSUM: 06ba25208a14b3e467671927a8205c1490f9b3cf
+PODFILE CHECKSUM: 958fb207a6737b569baf5f6407868dadeeb24749
 
 COCOAPODS: 1.9.1

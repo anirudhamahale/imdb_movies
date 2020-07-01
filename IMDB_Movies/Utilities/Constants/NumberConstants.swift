@@ -10,4 +10,5 @@ import Foundation
 
 struct NumberConstants {
   static let limit = 10
+  static let networkErrorCodes = [NSURLErrorNetworkConnectionLost, NSURLErrorTimedOut, NSURLErrorNotConnectedToInternet]
 }

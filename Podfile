@@ -16,7 +16,11 @@ target 'IMDB_Movies' do
   pod 'RxCocoa', '~> 5.0'
   pod 'RxAlamofire', '~> 5.0'
   pod 'RxDataSources', '~> 4.0.1'
-  pod 'YouTubePlayer'
+  pod 'RxRealm'
+  
   pod "youtube-ios-player-helper"
 
+  #Database
+  pod 'RealmSwift', '~> 3.19.0'
+  
 end

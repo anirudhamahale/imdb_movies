@@ -39,14 +39,19 @@ class MoviesListViewModel: ViewModel {
     dataProvider.getMovies(page: currentPage)
       .subscribe { [weak self] (event) in
         guard let this = self else { return }
-        if let list = event.element {
+        if let result = event.element {
+          let newMovies = result.0
           this.currentPage += 1
-          this.movies.append(contentsOf: list)
-          this.appendAndRefreshList(list)
-          this.moreRemaining = list.count > 0
+          this.movies.append(contentsOf: newMovies)
+          this.appendAndRefreshList(newMovies)
+          this.moreRemaining = newMovies.count > 0 && result.1 == true
         }
         if let error = event.error {
-          this.emptyDatastate.accept(.failed(title: this.failedTitle, message: error.localizedDescription))
+          if this.movies.count == 0 {
+            this.emptyDatastate.accept(.failed(title: this.failedTitle, message: error.localizedDescription))
+          } else {
+            this.appendAndRefreshList([])
+          }
         }
     }.disposed(by: disposeBag)
   }

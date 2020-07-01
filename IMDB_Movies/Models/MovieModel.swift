@@ -16,16 +16,6 @@ class MovieModel {
   var genres: String
   var overview: String
   
-  init(id: Int, name: String, image: String) {
-    self.id = id
-    self.name = name
-    self.image = image
-    
-    self.date = ""
-    self.genres = ""
-    self.overview = ""
-  }
-  
   init(id: Int, name: String, image: String, date: String, genres: String, overview: String) {
     self.id = id
     self.name = name
