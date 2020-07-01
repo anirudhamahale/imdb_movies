@@ -35,4 +35,12 @@ class MovieJSONMapper {
     
     return MovieModel(id: id, name: title, image: image, date: date, genres: genres, overview: overview)
   }
+  
+  static func getVideoId(from rawObject: Any) -> String? {
+    let json = JSON(rawObject)
+    guard let result = json["results"].array else { return nil }
+    return result.compactMap({ (item) -> String? in
+      return item["key"].string
+      }).first
+  }
 }

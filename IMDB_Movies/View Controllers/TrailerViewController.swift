@@ -14,22 +14,61 @@ class TrailerViewController: ViewController {
   
   static func initalise(with movieID: Int) -> TrailerViewController {
     let vc = Navigator.storyboards.main.instantiateViewController(withIdentifier: "TrailerViewController") as! TrailerViewController
+    vc.viewModel = TrailerViewModel(movieId: movieID)
     return vc
   }
   
   @IBOutlet weak var playerView: YTPlayerView!
+  var viewModel: TrailerViewModel!
   
   override func setupView() {
     super.setupView()
     
+    configureEmptyDataSetView(on: playerView)
     playerView.delegate = self
+  }
+  
+  override func bindViews() {
+    super.bindViews()
+    
+    viewModel.emptyDatastate
+      .subscribe { [weak self] (event) in
+        guard let this = self else { return }
+        if let event = event.element {
+          switch event {
+          case .loading(let title, let description):
+            this.emptyDataSetView?.setProgress(title: title, description: description)
+          case .noData(let title, let description):
+            this.emptyDataSetView?.setNoData(image: nil, title: title, description: description)
+          case .failed(let title, let message):
+            this.emptyDataSetView?.setFailed(image: nil, title: title, description: message, buttonTitle: "Retry")
+            this.emptyDataSetView?.didTapActionButton
+              .subscribe(onNext: { [weak self] in
+                self?.viewModel.getVideoId()
+              }).disposed(by: this.emptyDataSetView!.disposeBag)
+          default:
+            this.emptyDataSetView?.hide()
+          }
+        }
+    }.disposed(by: disposeBag)
+    
+    viewModel.videoId
+      .subscribe(onNext: { [weak self] videoID in
+        self?.playVideo(with: videoID)
+      }).disposed(by: viewModel.disposeBag)
   }
   
   override func finishedLoading() {
     super.finishedLoading()
     
-    // playerView.load(withVideoId: "7q6Co-nd0lM")
-    
+    viewModel.getVideoId()
+  }
+  
+  @IBAction func didTapDone(_ sender: UIBarButtonItem) {
+    self.dismiss(animated: true, completion: nil)
+  }
+  
+  private func playVideo(with id: String) {
     let playerVars : Dictionary =
     ["playsinline": "0", // 1 in view or 0 fullscreen
     "autoplay": "1", // Auto-play the video on load
@@ -46,17 +85,14 @@ class TrailerViewController: ViewController {
     "autohide": "0", // Hide video controls when playing
     "showinfo": "0"] // show related videos at the end // show related videos at the end
     
-    playerView.load(withVideoId: "EAiXc6HoLhs", playerVars: playerVars)
-  }
-  
-  @IBAction func didTapDone(_ sender: UIBarButtonItem) {
-    self.dismiss(animated: true, completion: nil)
+    playerView.load(withVideoId: id, playerVars: playerVars)
   }
 }
 
 extension TrailerViewController: YTPlayerViewDelegate {
   func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
     playerView.playVideo()
+    viewModel.playerReady()
   }
   
   func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
