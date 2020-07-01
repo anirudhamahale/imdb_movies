@@ -20,11 +20,18 @@ class ViewController: UIViewController {
   let disposeBag = DisposeBag()
   var emptyDataSetView: MEmptyDataSetView?
   
+  override var prefersStatusBarHidden: Bool {
+    return false
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupView()
     bindViews()
     finishedLoading()
+    
+    // setNeedsStatusBarAppearanceUpdate
+    self.setNeedsStatusBarAppearanceUpdate()
   }
   
   func configureEmptyDataSetView(on view: UIView? = nil, insets: UIEdgeInsets? = nil) {
