@@ -16,4 +16,8 @@ class MovieDataProvider: DataProvider {
   func getMovies(page: Int) -> Observable<[MovieModel]> {
     return remoteDataProvider.getMovies(page: page)
   }
+  
+  func getMovieDetails(for movieId: Int) -> Observable<MovieModel> {
+    return remoteDataProvider.getMovieDetails(for: movieId)
+  }
 }

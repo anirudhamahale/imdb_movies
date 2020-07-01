@@ -175,7 +175,8 @@ class MovieListViewController: ViewController {
   }
   
   private func pushMovieDetailView(for index: Int, isSearchActive: Bool = false) {
-    let vc = MovieDetailViewController.initalise()
+    let movieId = viewModel.getMovie(for: index, isSearchActive: isSearchActive).id
+    let vc = MovieDetailViewController.initalise(with: movieId)
     self.navigationController?.pushViewController(vc, animated: true)
   }
   

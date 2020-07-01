@@ -23,10 +23,15 @@ struct APPURL {
     static let imageRoute = environment.imageRoute
     
     static let popularMoviesList = "/movie/popular"
+    static let movieDetails = "/movie"
   }
   
   static var popularMoviesList: String {
     return APICalls.baseURL + APICalls.popularMoviesList
+  }
+  
+  static var movieDetails: String {
+    return APICalls.baseURL + APICalls.movieDetails
   }
   
   static var imageRoute: String {

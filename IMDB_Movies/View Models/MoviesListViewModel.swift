@@ -26,6 +26,7 @@ class MoviesListViewModel: ViewModel {
   private let dataProvider = MovieDataProvider()
   
   private var movies: [MovieModel] = []
+  private var filteredMovies: [MovieModel] = []
   private var currentPage = 1
   
   func getMovies() {
@@ -65,8 +66,17 @@ class MoviesListViewModel: ViewModel {
   
   func filterMovies(for string: String) {
     let searchString = string.replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression, range: nil).trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
-    let filteredOptions = movies.filter({ $0.name.contains(searchString) }).map({ MovieItemTableCellModel.from($0) })
+    filteredMovies = movies.filter({ $0.name.contains(searchString) })
+    let filteredOptions = filteredMovies.map({ MovieItemTableCellModel.from($0) })
     searchDisplayDataSubject.onNext(filteredOptions)
+  }
+  
+  func getMovie(for index: Int, isSearchActive: Bool = false) -> MovieModel {
+    if isSearchActive {
+      return filteredMovies[index]
+    } else {
+      return movies[index]
+    }
   }
 }
 

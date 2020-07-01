@@ -21,4 +21,18 @@ class MovieJSONMapper {
     }
     return movies
   }
+  
+  static func getMovieDetailFrom(from rawObject: Any) -> MovieModel? {
+    let json = JSON(rawObject)
+    guard let id = json["id"].int else { return nil }
+    guard let title = json["title"].string else { return nil }
+    guard let image = json["poster_path"].string else { return nil }
+    guard let date = json["release_date"].string else { return nil }
+    guard let genres = json["genres"].array?.compactMap({ (item) -> String? in
+      return item["name"].string
+    }).joined(separator: ",") else { return nil }
+    guard let overview = json["overview"].string else { return nil }
+    
+    return MovieModel(id: id, name: title, image: image, date: date, genres: genres, overview: overview)
+  }
 }
