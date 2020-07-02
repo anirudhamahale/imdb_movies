@@ -13,4 +13,6 @@ struct StringConstant {
   static let invalidJSON = "Invalid JSON format"
   static let noMovie = "No Movie found in database with the provided id."
   static let noMoreMovies = "No more movies remaining."
+  static let offline = "The internet connection appears to be offline."
+  static let notSet = "Not set"
 }

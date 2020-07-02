@@ -11,6 +11,8 @@ import RxSwift
 
 class MovieRemoteDataProvider: RemoteDataProvider {
   
+  /// Returns an Observable of MovieModel based on it's page.
+  /// - Parameter page: Movies to download from particular page.
   func getMovies(page: Int) -> Observable<[MovieModel]> {
     let url = APPURL.popularMoviesList
     let params: [String : Any] = ["page": page, "api_key": StringConstant.api_key]
@@ -20,6 +22,8 @@ class MovieRemoteDataProvider: RemoteDataProvider {
     }
   }
   
+  /// Returns an Observable of MovieModel based on the movie id.
+  /// - Parameter movieId: The movie id to download the particular movie.
   func getMovieDetails(for movieId: Int) -> Observable<MovieModel> {
     let url = APPURL.movieDetails + "/\(movieId)"
     let params = ["api_key": StringConstant.api_key]
@@ -32,6 +36,8 @@ class MovieRemoteDataProvider: RemoteDataProvider {
     }
   }
   
+  /// Returns an Observable of  video id.
+  /// - Parameter movieId: The movie id based on it will retrive the video id.
   func getVideoId(from movieId: Int) -> Observable<String> {
     let url = APPURL.movieDetails + "/\(movieId)" + "/videos"
     let params = ["api_key": StringConstant.api_key]

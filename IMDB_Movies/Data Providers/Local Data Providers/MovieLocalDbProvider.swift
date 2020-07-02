@@ -12,6 +12,8 @@ import RxRealm
 
 class MovieLocalDbProvider: LocalDbProvider {
   
+  /// Adds movie to the local database.
+  /// - Parameter movies: List of movies to save.
   func addMovies(movies: [MovieModel]) {
     try! getInstance().write {
       movies.forEach { (movie) in
@@ -23,12 +25,14 @@ class MovieLocalDbProvider: LocalDbProvider {
     }
   }
   
+  /// Removes all the movies from the database.
   func removeAllMovies() {
     try! getInstance().write {
       getInstance().delete(getInstance().objects(MovieRealmModel.self))
     }
   }
   
+  /// Returns an Observable of list of movies.
   func getMovies() -> Observable<[MovieModel]> {
     Observable.collection(from: getInstance().objects(MovieRealmModel.self))
       .map { data -> [MovieModel] in
@@ -38,6 +42,8 @@ class MovieLocalDbProvider: LocalDbProvider {
     }
   }
   
+  /// Returns an Observable of MovieModel
+  /// - Parameter movieId: The movie id based on which particular movie to retrive.
   func getMovieDetails(for movieId: Int) -> Observable<MovieModel> {
     if let object = getInstance().objects(MovieRealmModel.self).filter("id = %@", movieId).first {
       return Observable.of(object)
@@ -49,6 +55,8 @@ class MovieLocalDbProvider: LocalDbProvider {
     }
   }
   
+  /// Set the movie propertie to the movie given.
+  /// - Parameter movie: Movie to whos property to set.
   func setMoviesProperties(_ movie: MovieModel) {
     let answerObjects = getInstance().objects(MovieRealmModel.self).filter("id = %@", movie.id)
     try! getInstance().write {

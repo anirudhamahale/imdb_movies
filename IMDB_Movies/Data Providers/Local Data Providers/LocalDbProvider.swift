@@ -17,10 +17,12 @@ class LocalDbProvider {
     self.realm = try! Realm()
   }
   
+  /// Returns an instance of the database.
   func getInstance() -> Realm {
     return self.realm
   }
   
+  /// Clears the database.
   func clearDatabase() {
     try! getInstance().write {
       getInstance().deleteAll()

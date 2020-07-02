@@ -38,6 +38,7 @@ class TrailerViewController: ViewController {
       self?.viewModel.getVideoId()
     }).disposed(by: emptyDataSetView!.disposeBag)
     
+    // Callback to get video id.
     viewModel.videoId
       .subscribe(onNext: { [weak self] videoID in
         self?.playVideo(with: videoID)
@@ -47,6 +48,7 @@ class TrailerViewController: ViewController {
   override func finishedLoading() {
     super.finishedLoading()
     
+    // Calling getVideoId to fetch the video id.
     viewModel.getVideoId()
   }
   
@@ -54,6 +56,8 @@ class TrailerViewController: ViewController {
     self.dismiss(animated: true, completion: nil)
   }
   
+  /// Loads the vidoe player with the provided id.
+  /// - Parameter id: Youtube id of the video.
   private func playVideo(with id: String) {
     let playerVars : Dictionary =
     ["playsinline": "0", // 1 in view or 0 fullscreen
@@ -77,12 +81,14 @@ class TrailerViewController: ViewController {
 
 extension TrailerViewController: YTPlayerViewDelegate {
   func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
+    // Player has loaded the video & ready to stream it.
     playerView.playVideo()
     viewModel.playerReady()
   }
   
   func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
     if state == .ended {
+      // As the video has ended dismissing the view.
       self.dismiss(animated: true, completion: nil)
     }
   }

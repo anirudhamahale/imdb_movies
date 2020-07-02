@@ -34,6 +34,10 @@ class ViewController: UIViewController {
     self.setNeedsStatusBarAppearanceUpdate()
   }
   
+  /// Adds Empty data set to the view heirarchy.
+  /// - Parameters:
+  ///   - view: Adds the EmtpyData set View relative to this views position.
+  ///   - insets: The amount of padding needed.
   func addEmptyDataSetView(on view: UIView? = nil, insets: UIEdgeInsets? = nil) {
     let parentView = view ?? self.view
     emptyDataSetView = MEmptyDataSetView()
@@ -48,6 +52,8 @@ class ViewController: UIViewController {
     self.view.layoutIfNeeded()
   }
   
+  /// This methods handles the showing of repsected UI for particular event.
+  /// - Parameter viewModel: An instance of ViewModel.
   func configureEmptyData(for viewModel: ViewModel) {
     viewModel.emptyDatastate
       .subscribe { [weak self] (event) in
@@ -66,13 +72,20 @@ class ViewController: UIViewController {
     }.disposed(by: viewModel.disposeBag)
   }
   
+  /// Method to add & configure of UI elements.
   func setupView() {}
   
+  /// Method to bind UI Elements to the view model's output.
   func bindViews() {}
   
+  /// This method is called once setting and binding of UI is done.
   func finishedLoading() {}
   
-  func showToast(message: String, seconds: Double = 3) {
+  /// Shows Toast.
+  /// - Parameters:
+  ///   - message: Message to be displayed on Toasts.
+  ///   - seconds: Duration of the toast, default is set to 2 seconds.
+  func showToast(message: String, seconds: Double = 2) {
     let alert = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
     self.present(alert, animated: true)
     

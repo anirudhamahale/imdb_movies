@@ -17,8 +17,22 @@ class MovieListViewController: ViewController {
   var searchBarButton: UIBarButtonItem!
   var movieFilterSearchController : UISearchController!
   var resultController: UITableViewController!
+  let refreshControl = UIRefreshControl()
   
   let viewModel = MoviesListViewModel()
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    // To Prevent refresh controller from stop animating when pushed to detail view and returning back.
+    if self.refreshControl.isRefreshing {
+      let offset = tableView.contentOffset
+      UIView.performWithoutAnimation {
+        refreshControl.endRefreshing()
+      }
+      refreshControl.beginRefreshing()
+      tableView.contentOffset = offset
+    }
+  }
   
   override func setupView() {
     super.setupView()
@@ -33,6 +47,12 @@ class MovieListViewController: ViewController {
     
     addEmptyDataSetView()
     setupSearchController()
+    
+    if #available(iOS 10.0, *) {
+      tableView.refreshControl = refreshControl
+    } else {
+      tableView.addSubview(refreshControl)
+    }
   }
   
   override func bindViews() {
@@ -41,14 +61,16 @@ class MovieListViewController: ViewController {
     configureEmptyData(for: viewModel)
     
     emptyDataSetView?.didTapActionButton
-    .subscribe(onNext: { [weak self] in
-      self?.viewModel.getMovies()
-    }).disposed(by: emptyDataSetView!.disposeBag)
+      .subscribe(onNext: { [weak self] in
+        self?.viewModel.getMovies()
+      }).disposed(by: emptyDataSetView!.disposeBag)
     
+    // Binds the datasource to the tableView.
     viewModel.displayData
       .bind(to: tableView.rx.items(dataSource: getDataSource()))
       .disposed(by: disposeBag)
     
+    // Handling pagination.
     tableView.rx
       .contentOffset
       .throttle(.seconds(2), scheduler: MainScheduler.instance)
@@ -64,23 +86,45 @@ class MovieListViewController: ViewController {
         self?.viewModel.getMovies()
       }).disposed(by: disposeBag)
     
+    // Callback when item is selected from tableview.
     tableView.rx
       .itemSelected
       .subscribe(onNext: { [weak self] indexPath in
         self?.pushMovieDetailView(for: indexPath.row)
       }).disposed(by: disposeBag)
     
+    // Callback to show toasts.
     viewModel.message
       .subscribe(onNext: { [weak self] text in
         self?.showToast(message: text)
+      }).disposed(by: viewModel.disposeBag)
+    
+    // Callback when refersh action is done.
+    refreshControl.rx
+      .controlEvent(.valueChanged)
+      .subscribe(onNext: { [weak self] _ in
+        self?.viewModel.refreshMovies()
+      }).disposed(by: disposeBag)
+    
+    // Callback when refreshing status is changed
+    viewModel.refreshing
+      .distinctUntilChanged()
+      .subscribe(onNext: { [weak self] refreshing in
+        if refreshing {
+          self?.refreshControl.beginRefreshing()
+        } else {
+          self?.refreshControl.endRefreshing()
+        }
       }).disposed(by: viewModel.disposeBag)
   }
   
   override func finishedLoading() {
     super.finishedLoading()
+    // calling the get movies list as view is finished loading.
     viewModel.getMovies()
   }
   
+  // data source to the table view.
   func getDataSource() -> RxTableViewSectionedReloadDataSource<RxAnimatableTableSectionModel>! {
     let dataSource = RxTableViewSectionedReloadDataSource<RxAnimatableTableSectionModel>(
       configureCell: { dataSource, tableView, indexPath, item in
@@ -102,20 +146,24 @@ class MovieListViewController: ViewController {
     return dataSource
   }
   
+  /// Addes
   private func setupRightButton() {
-    searchBarButton = UIBarButtonItem(image: Images.search, style: .done, target: self, action: #selector(self.showSearchBar))
+    searchBarButton = UIBarButtonItem(image: Images.search, style: .done, target: self, action: #selector(self.presentSearchController))
     self.navigationItem.rightBarButtonItem = searchBarButton
   }
   
+  /// Setups the search bar and handles it's callbacks.
   private func setupSearchController() {
     resultController = storyboard?.instantiateViewController(withIdentifier: "SearchMovieResultController") as? UITableViewController
     movieFilterSearchController = UISearchController(searchResultsController: resultController)
     
     let tableView = resultController.tableView!
     tableView.registerCell(with: "MovieItemTableViewCell")
+    // Setting the datasource & delegate nil to prevent the crash as the below method will again set the datasource.
     tableView.dataSource = nil
     tableView.delegate = nil
     
+    // Binds the search result datasource to the search controller's tableview.
     viewModel.searchDisplayData
       .bind(to: tableView.rx.items(cellIdentifier: "MovieItemTableViewCell")) { (index, model: MovieItemTableCellModel, cell: MovieItemTableViewCell) in
         cell.data = model
@@ -148,6 +196,7 @@ class MovieListViewController: ViewController {
     movieFilterSearchController.hidesNavigationBarDuringPresentation = false
     movieFilterSearchController.searchBar.sizeToFit()
     
+    // Callback when text from the search bar is changed & in turn it calls the filter movie method.
     movieFilterSearchController.searchBar
       .rx
       .text
@@ -155,22 +204,27 @@ class MovieListViewController: ViewController {
         self?.viewModel.filterMovies(for: text ?? "")
       }).disposed(by: disposeBag)
     
+    // Callback when movie is selected from the search controller.
     tableView.rx
-    .itemSelected
-    .subscribe(onNext: { [weak self] indexPath in
-      self?.movieFilterSearchController.dismiss(animated: false, completion: nil)
-      self?.pushMovieDetailView(for: indexPath.row, isSearchActive: true)
-    }).disposed(by: disposeBag)
+      .itemSelected
+      .subscribe(onNext: { [weak self] indexPath in
+        self?.movieFilterSearchController.dismiss(animated: false, completion: nil)
+        self?.pushMovieDetailView(for: indexPath.row, isSearchActive: true)
+      }).disposed(by: disposeBag)
   }
   
-  @objc func showSearchBar() {
+  /// Presents the search controller.
+  @objc func presentSearchController() {
     self.present(movieFilterSearchController, animated: true, completion: nil)
   }
   
+  /// Push Movie Detail View.
+  /// - Parameters:
+  ///   - index: index of the selected item in the list.
+  ///   - isSearchActive: Indicates wether search bar is active.
   private func pushMovieDetailView(for index: Int, isSearchActive: Bool = false) {
     let movieId = viewModel.getMovie(for: index, isSearchActive: isSearchActive).id
     let vc = MovieDetailViewController.initalise(with: movieId)
     self.navigationController?.pushViewController(vc, animated: true)
   }
-  
 }

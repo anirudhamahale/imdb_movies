@@ -27,6 +27,7 @@ class MovieDetailViewModel: ViewModel {
     super.init()
   }
   
+  /// Method to get movie details.
   func getMovieDetails() {
     emptyDatastate.accept(loadingState)
     dataProvider.getMovieDetails(for: movieId)
@@ -41,9 +42,15 @@ class MovieDetailViewModel: ViewModel {
     }.disposed(by: disposeBag)
   }
   
+  /// Populate the view from the model provided.
+  /// - Parameter movie: Instance of movie model which will give the movie details.
   private func populateViews(_ movie: MovieModel) {
     title.accept(movie.name)
-    genres.accept(movie.genres)
+    if movie.genres.count == 0 {
+      genres.accept(StringConstant.notSet)
+    } else {
+      genres.accept(movie.genres)
+    }
     date.accept(movie.date)
     overview.accept(movie.overview)
     
@@ -53,6 +60,8 @@ class MovieDetailViewModel: ViewModel {
     }
   }
   
+  /// shows failed message.
+  /// - Parameter error: error message to display.
   private func showFailedMessage(with error: String) {
     emptyDatastate.accept(.failed(title: failedTitle, message: error))
   }
