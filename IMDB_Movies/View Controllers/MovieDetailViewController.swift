@@ -22,7 +22,7 @@ class MovieDetailViewController: ViewController {
   
   static func initalise(with movieID: Int) -> MovieDetailViewController {
     let vc = Navigator.storyboards.main.instantiateViewController(withIdentifier: "MovieDetailViewController") as! MovieDetailViewController
-    vc.viewModel = MovieDetailViewModel(movieId: movieID)
+    vc.viewModel = MovieDetailViewModel(movieId: movieID, dataProvider: MovieDataProvider())
     return vc
   }
   

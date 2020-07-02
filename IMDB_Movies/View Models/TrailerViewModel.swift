@@ -15,10 +15,11 @@ class TrailerViewModel: ViewModel {
   private(set) var movieId: Int
   
   let videoId = BehaviorRelay<String>(value: "")
-  private let dataProvider = MovieDataProvider()
+  private var dataProvider: MovieDataProvider
   
-  init(movieId: Int) {
+  init(movieId: Int, dataProvider: MovieDataProvider) {
     self.movieId = movieId
+    self.dataProvider = dataProvider
     super.init()
   }
   

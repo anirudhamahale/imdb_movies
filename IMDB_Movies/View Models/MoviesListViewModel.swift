@@ -13,7 +13,7 @@ import RxDataSources
 class MoviesListViewModel: ViewModel {
   
   // Table data properties.
-  private var movieListSection = RxAnimatableTableSectionModel(header: "movieListSection", rows: [])
+  private(set) var movieListSection = RxAnimatableTableSectionModel(header: "movieListSection", rows: [])
   var displayData = BehaviorRelay<[RxAnimatableTableSectionModel]>.init(value: [])
   
   // Indicates wether more movies are remaining.
@@ -34,16 +34,21 @@ class MoviesListViewModel: ViewModel {
   // Observable that provides Status of the Refresh controller.
   let refreshing = BehaviorRelay<Bool>(value: false)
   
-  private let dataProvider = MovieDataProvider()
+  private var dataProvider: MovieDataProvider
   
-  private var movies: [MovieModel] = []
-  private var filteredMovies: [MovieModel] = []
-  private var currentPage = 1
+  private(set) var movies: [MovieModel] = []
+  private(set) var filteredMovies: [MovieModel] = []
+  private(set) var currentPage = 1
   
-  func getMovies() {
+  init(dataProvider: MovieDataProvider) {
+    self.dataProvider = dataProvider
+  }
+  
+  func getMovies(completion: (()->())? = nil) {
     // If there are no more movies to download then just show toast and return.
     if !moreRemaining {
       toastMessageSubject.onNext(StringConstant.noMoreMovies)
+      completion?()
       return
     }
     // If the movies count is zero then show loading UI.
@@ -60,6 +65,7 @@ class MoviesListViewModel: ViewModel {
         guard let this = self else { return }
         if let result = event.element {
           self?.parseMovieListingResponse(result)
+          completion?()
         }
         if let error = event.error {
           if this.movies.count == 0 {
@@ -70,24 +76,27 @@ class MoviesListViewModel: ViewModel {
             this.toastMessageSubject.onNext(error.localizedDescription)
             this.appendAndRefreshList([])
           }
+          completion?()
         }
     }.disposed(by: disposeBag)
   }
   
   /// Refreshs the movies list.
-  func refreshMovies() {
+  func refreshMovies(completion: (()->())? = nil) {
     refreshing.accept(true)
     dataProvider.getMovies(page: 1)
-      .delay(.seconds(1), scheduler: MainScheduler.instance)
+      // .delay(.seconds(1), scheduler: MainScheduler.instance)
       .subscribe { [weak self] (event) in
         guard let this = self else { return }
         this.refreshing.accept(false)
         if let result = event.element {
           self?.parseMovieListingResponse(result, isRefresh: true)
+          completion?()
         }
         if let error = event.error {
           this.toastMessageSubject.onNext(error.localizedDescription)
           this.appendAndRefreshList([])
+          completion?()
         }
     }.disposed(by: disposeBag)
   }

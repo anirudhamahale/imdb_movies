@@ -14,7 +14,7 @@ class TrailerViewController: ViewController {
   
   static func initalise(with movieID: Int) -> TrailerViewController {
     let vc = Navigator.storyboards.main.instantiateViewController(withIdentifier: "TrailerViewController") as! TrailerViewController
-    vc.viewModel = TrailerViewModel(movieId: movieID)
+    vc.viewModel = TrailerViewModel(movieId: movieID, dataProvider: MovieDataProvider())
     return vc
   }
   

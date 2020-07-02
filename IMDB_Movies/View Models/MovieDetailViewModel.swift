@@ -20,24 +20,27 @@ class MovieDetailViewModel: ViewModel {
   let overview = BehaviorRelay<String>(value: "")
   let imageUrl = PublishSubject<URL>()
   
-  private let dataProvider = MovieDataProvider()
+  private var dataProvider: MovieDataProvider
   
-  init(movieId: Int) {
+  init(movieId: Int, dataProvider: MovieDataProvider) {
     self.movieId = movieId
+    self.dataProvider = dataProvider
     super.init()
   }
   
   /// Method to get movie details.
-  func getMovieDetails() {
+  func getMovieDetails(completion: (()->())? = nil) {
     emptyDatastate.accept(loadingState)
     dataProvider.getMovieDetails(for: movieId)
       .subscribe { [weak self] (event) in
         if let movie = event.element {
           self?.populateViews(movie)
           self?.emptyDatastate.accept(.done)
+          completion?()
         }
         if let error = event.error {
           self?.showFailedMessage(with: error.localizedDescription)
+          completion?()
         }
     }.disposed(by: disposeBag)
   }

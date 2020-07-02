@@ -23,4 +23,9 @@ target 'IMDB_Movies' do
   #Database
   pod 'RealmSwift', '~> 3.19.0'
   
+  target 'IMDB_MoviesTests' do
+    inherit! :search_paths
+  end
+  
 end
+

@@ -19,7 +19,7 @@ class MovieListViewController: ViewController {
   var resultController: UITableViewController!
   let refreshControl = UIRefreshControl()
   
-  let viewModel = MoviesListViewModel()
+  let viewModel = MoviesListViewModel(dataProvider: MovieDataProvider())
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
