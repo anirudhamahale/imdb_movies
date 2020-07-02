@@ -73,14 +73,10 @@ class ViewController: UIViewController {
   func finishedLoading() {}
   
   func showToast(message: String, seconds: Double = 3) {
-    let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-    alert.view.backgroundColor = UIColor.black
-    alert.view.alpha = 0.6
-    alert.view.layer.cornerRadius = 15
-    
+    let alert = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
     self.present(alert, animated: true)
     
-    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + seconds) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
       alert.dismiss(animated: true)
     }
   }

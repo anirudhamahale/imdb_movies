@@ -36,6 +36,7 @@ class MoviesListViewModel: ViewModel {
   func getMovies() {
     if !moreRemaining {
       toastMessageSubject.onNext(StringConstant.noMoreMovies)
+      return
     }
     if movies.count == 0 {
       emptyDatastate.accept(loadingState)
@@ -52,16 +53,13 @@ class MoviesListViewModel: ViewModel {
           this.currentPage += 1
           this.movies.append(contentsOf: newMovies)
           this.appendAndRefreshList(newMovies)
-          let moreRemaining = newMovies.count > 0 && result.1 == true
-          if !moreRemaining {
-            this.toastMessageSubject.onNext(StringConstant.noMoreMovies)
-          }
           this.moreRemaining = newMovies.count > 0 && result.1 == true
         }
         if let error = event.error {
           if this.movies.count == 0 {
             this.emptyDatastate.accept(.failed(title: this.failedTitle, message: error.localizedDescription))
           } else {
+            this.toastMessageSubject.onNext(error.localizedDescription)
             this.appendAndRefreshList([])
           }
         }
