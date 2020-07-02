@@ -53,7 +53,7 @@ class MovieListViewController: ViewController {
       .contentOffset
       .throttle(.seconds(2), scheduler: MainScheduler.instance)
       .filter({ [weak self] (_) -> Bool in
-        return self?.viewModel.moreRemaining == true && self?.viewModel.emptyDatastate.value.isDone == true
+        return self?.viewModel.emptyDatastate.value.isDone == true
       })
       .filter({ [weak self] (contentOffset) -> Bool in
         let offsetY = contentOffset.y
@@ -69,6 +69,11 @@ class MovieListViewController: ViewController {
       .subscribe(onNext: { [weak self] indexPath in
         self?.pushMovieDetailView(for: indexPath.row)
       }).disposed(by: disposeBag)
+    
+    viewModel.message
+      .subscribe(onNext: { [weak self] text in
+        self?.showToast(message: text)
+      }).disposed(by: viewModel.disposeBag)
   }
   
   override func finishedLoading() {

@@ -15,11 +15,16 @@ class MoviesListViewModel: ViewModel {
   // Table data
   private var movieListSection = RxAnimatableTableSectionModel(header: "movieListSection", rows: [])
   var displayData = BehaviorRelay<[RxAnimatableTableSectionModel]>.init(value: [])
-  var moreRemaining = false
+  var moreRemaining = true
   
   private let searchDisplayDataSubject = PublishSubject<[MovieItemTableCellModel]>()
   var searchDisplayData: Observable<[MovieItemTableCellModel]> {
     return searchDisplayDataSubject.asObserver()
+  }
+  
+  private let toastMessageSubject = PublishSubject<String>()
+  var message: Observable<String> {
+    return toastMessageSubject.asObserver()
   }
   
   private let dataProvider = MovieDataProvider()
@@ -29,6 +34,9 @@ class MoviesListViewModel: ViewModel {
   private var currentPage = 1
   
   func getMovies() {
+    if !moreRemaining {
+      toastMessageSubject.onNext(StringConstant.noMoreMovies)
+    }
     if movies.count == 0 {
       emptyDatastate.accept(loadingState)
     } else {
@@ -44,6 +52,10 @@ class MoviesListViewModel: ViewModel {
           this.currentPage += 1
           this.movies.append(contentsOf: newMovies)
           this.appendAndRefreshList(newMovies)
+          let moreRemaining = newMovies.count > 0 && result.1 == true
+          if !moreRemaining {
+            this.toastMessageSubject.onNext(StringConstant.noMoreMovies)
+          }
           this.moreRemaining = newMovies.count > 0 && result.1 == true
         }
         if let error = event.error {

@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 
 class ViewController: UIViewController {
-
+  
   deinit {
     if ProcessInfo.processInfo.environment["deinit_log"] == "" {
       print(String(describing: self) + " 🔥")
@@ -71,6 +71,19 @@ class ViewController: UIViewController {
   func bindViews() {}
   
   func finishedLoading() {}
+  
+  func showToast(message: String, seconds: Double = 3) {
+    let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+    alert.view.backgroundColor = UIColor.black
+    alert.view.alpha = 0.6
+    alert.view.layer.cornerRadius = 15
+    
+    self.present(alert, animated: true)
+    
+    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + seconds) {
+      alert.dismiss(animated: true)
+    }
+  }
   
 }
 
