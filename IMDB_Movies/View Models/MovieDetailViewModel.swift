@@ -20,30 +20,40 @@ class MovieDetailViewModel: ViewModel {
   let overview = BehaviorRelay<String>(value: "")
   let imageUrl = PublishSubject<URL>()
   
-  private let dataProvider = MovieDataProvider()
+  private var dataProvider: MovieDataProvider
   
-  init(movieId: Int) {
+  init(movieId: Int, dataProvider: MovieDataProvider) {
     self.movieId = movieId
+    self.dataProvider = dataProvider
     super.init()
   }
   
-  func getMovieDetails() {
+  /// Method to get movie details.
+  func getMovieDetails(completion: (()->())? = nil) {
     emptyDatastate.accept(loadingState)
     dataProvider.getMovieDetails(for: movieId)
       .subscribe { [weak self] (event) in
         if let movie = event.element {
           self?.populateViews(movie)
           self?.emptyDatastate.accept(.done)
+          completion?()
         }
         if let error = event.error {
           self?.showFailedMessage(with: error.localizedDescription)
+          completion?()
         }
     }.disposed(by: disposeBag)
   }
   
+  /// Populate the view from the model provided.
+  /// - Parameter movie: Instance of movie model which will give the movie details.
   private func populateViews(_ movie: MovieModel) {
     title.accept(movie.name)
-    genres.accept(movie.genres)
+    if movie.genres.count == 0 {
+      genres.accept(StringConstant.notSet)
+    } else {
+      genres.accept(movie.genres)
+    }
     date.accept(movie.date)
     overview.accept(movie.overview)
     
@@ -53,6 +63,8 @@ class MovieDetailViewModel: ViewModel {
     }
   }
   
+  /// shows failed message.
+  /// - Parameter error: error message to display.
   private func showFailedMessage(with error: String) {
     emptyDatastate.accept(.failed(title: failedTitle, message: error))
   }

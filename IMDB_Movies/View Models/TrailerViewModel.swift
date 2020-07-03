@@ -15,20 +15,21 @@ class TrailerViewModel: ViewModel {
   private(set) var movieId: Int
   
   let videoId = BehaviorRelay<String>(value: "")
-  private let dataProvider = MovieDataProvider()
+  private var dataProvider: MovieDataProvider
   
-  init(movieId: Int) {
+  init(movieId: Int, dataProvider: MovieDataProvider) {
     self.movieId = movieId
+    self.dataProvider = dataProvider
     super.init()
   }
   
+  /// Fetchs the video id based.
   func getVideoId() {
     emptyDatastate.accept(loadingState)
     dataProvider.getVideoId(from: movieId)
     .subscribe { [weak self] (event) in
         if let videoId = event.element {
           self?.videoId.accept(videoId)
-          // self?.emptyDatastate.accept(.done)
         }
         if let error = event.error {
           self?.showFailedMessage(with: error.localizedDescription)
@@ -36,10 +37,13 @@ class TrailerViewModel: ViewModel {
     }.disposed(by: disposeBag)
   }
   
+  /// Show error message.
+  /// - Parameter error: error message to display.
   private func showFailedMessage(with error: String) {
     emptyDatastate.accept(.failed(title: failedTitle, message: error))
   }
   
+  /// Player ready event.
   func playerReady() {
     emptyDatastate.accept(.done)
   }
