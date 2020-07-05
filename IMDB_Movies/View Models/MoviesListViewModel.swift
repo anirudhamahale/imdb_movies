@@ -144,7 +144,7 @@ class MoviesListViewModel: ViewModel {
   ///   - isRefresh: True Indicates that this method is called from response of refresh call.
   func parseMovieListingResponse(_ result: ([MovieModel], Bool), isRefresh: Bool = false) {
     let newMovies = result.0
-    currentPage = 2
+    currentPage += 1
     
     // If the response if of refresh call then empty the data source and record list.
     if isRefresh {
