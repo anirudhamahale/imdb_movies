@@ -85,7 +85,6 @@ class MoviesListViewModel: ViewModel {
   func refreshMovies(completion: (()->())? = nil) {
     refreshing.accept(true)
     dataProvider.getMovies(page: 1)
-      // .delay(.seconds(1), scheduler: MainScheduler.instance)
       .subscribe { [weak self] (event) in
         guard let this = self else { return }
         this.refreshing.accept(false)
@@ -148,6 +147,7 @@ class MoviesListViewModel: ViewModel {
     
     // If the response if of refresh call then empty the data source and record list.
     if isRefresh {
+      currentPage = 2
       movies = []
       movieListSection.rows = []
     }
